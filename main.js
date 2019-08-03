@@ -12,7 +12,16 @@ function bindEvents() {
     goToSlide(index)
   })
 }
-//重要，一旦我们拥有了直接到达某个slide的能力们就可以做左右轮播了
+
+$(next).on('click',function() {
+  goToSlide(current+1)
+})
+
+$(previous).on('click',function() {
+  goToSlide(current-1)
+})
+
+//重要，一旦我们拥有了直接到达某个slide的能力们就可以做上一张和下一张
 function goToSlide(index) {
   let len = $buttons.length
   if (current === len - 1 && index === 0) {

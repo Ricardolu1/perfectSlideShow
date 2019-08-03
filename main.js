@@ -1,10 +1,9 @@
 let $buttons = $("#buttonsWrapper>button")
 let $slides = $("#slides")
 let $images = $("#slides>img")
-let current = 0
+let current=0
 makeFakeSlides()
 bindEvents()
-
 function bindEvents() {
   $("#buttonsWrapper").on("click", "button", function(e) {
     let $button = $(e.currentTarget)
@@ -23,7 +22,14 @@ $(previous).on('click',function() {
 
 //重要，一旦我们拥有了直接到达某个slide的能力们就可以做上一张和下一张
 function goToSlide(index) {
+
   let len = $buttons.length
+  if (index>len-1) {
+    index=0
+  }else if(index<0){
+    index=len-1
+  }
+
   if (current === len - 1 && index === 0) {
     //说明是最后一个到第一个
     $slides
@@ -41,6 +47,7 @@ function goToSlide(index) {
         $slides.hide().offset()
         $slides.css({ transform: `translateX(${-len * 400}px)` }).show()
       })
+    current = index
   } else {
     $slides.css({ transform: `translateX(${-(index + 1) * 400}px)` })
     current = index

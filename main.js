@@ -20,10 +20,33 @@ $(previous).on('click',function() {
   goToSlide(current-1)
 })
 
+let timeId=setInterval(() => {
+  goToSlide(current+1)
+}, 1500)
+
+
+$('.window').on('mouseenter',function() {
+  clearInterval(timeId)
+}).on('mouseleave',function() {
+  timeId=setInterval(() => {
+    goToSlide(current+1)
+  }, 1500)
+})
+
+$('.button-container').on('mouseenter',function() {
+  clearInterval(timeId)
+}).on('mouseleave',function() {
+  timeId=setInterval(() => {
+    goToSlide(current+1)
+  }, 1500)
+})
+
+
 //重要，一旦我们拥有了直接到达某个slide的能力们就可以做上一张和下一张
 function goToSlide(index) {
 
   let len = $buttons.length
+  
   if (index>len-1) {
     index=0
   }else if(index<0){
@@ -39,7 +62,7 @@ function goToSlide(index) {
         $slides.css({ transform: `translateX(-400px)` }).show()
       })
     current = index
-  } else if (current === 0 && index === $buttons.length - 1) {
+  } else if (current === 0 && index === len - 1) {
     //第一个到最后一个
     $slides
       .css({ transform: `translateX(0px)` })
@@ -55,7 +78,13 @@ function goToSlide(index) {
 }
 
 
+function makeFakeSlides() {
+  let $firstFake = $images.eq($images.length - 1).clone(true)
+  let $lastFake = $images.eq(0).clone(true)
 
+  $slides.append($lastFake) //append要用在父元素里面
+  $slides.prepend($firstFake)
+}
 
 
 
@@ -107,10 +136,4 @@ function goToSlide(index) {
 //   })
 //
 
-function makeFakeSlides() {
-  let $firstFake = $images.eq($images.length - 1).clone(true)
-  let $lastFake = $images.eq(0).clone(true)
 
-  $slides.append($lastFake) //append要用在父元素里面
-  $slides.prepend($firstFake)
-}

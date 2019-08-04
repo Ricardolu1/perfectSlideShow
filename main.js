@@ -24,7 +24,6 @@ let timeId=setInterval(() => {
   goToSlide(current+1)
 }, 1500)
 
-
 $('.window').on('mouseenter',function() {
   clearInterval(timeId)
 }).on('mouseleave',function() {
@@ -41,6 +40,15 @@ $('.button-container').on('mouseenter',function() {
   }, 1500)
 })
 
+document.addEventListener("visibilitychange", function () {
+  if (document.hidden) {   
+    clearInterval(timeId)
+  }else{
+    timeId=setInterval(() => {
+      goToSlide(current+1)
+    }, 1500)
+  }
+})
 
 //重要，一旦我们拥有了直接到达某个slide的能力们就可以做上一张和下一张
 function goToSlide(index) {

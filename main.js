@@ -39,7 +39,7 @@ $('.button-container').on('mouseenter',function() {
     goToSlide(current+1)
   }, 1500)
 })
-
+//监听是否在当前页面
 document.addEventListener("visibilitychange", function () {
   if (document.hidden) {   
     clearInterval(timeId)

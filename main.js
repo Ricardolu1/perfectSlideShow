@@ -22,14 +22,14 @@ $(previous).on('click',function() {
 
 let timeId=setInterval(() => {
   goToSlide(current+1)
-}, 1500)
+}, 2000)
 
 $('.window').on('mouseenter',function() {
   clearInterval(timeId)
 }).on('mouseleave',function() {
   timeId=setInterval(() => {
     goToSlide(current+1)
-  }, 1500)
+  }, 2000)
 })
 
 $('.button-container').on('mouseenter',function() {
@@ -37,7 +37,7 @@ $('.button-container').on('mouseenter',function() {
 }).on('mouseleave',function() {
   timeId=setInterval(() => {
     goToSlide(current+1)
-  }, 1500)
+  }, 2000)
 })
 //监听是否在当前页面
 document.addEventListener("visibilitychange", function () {
@@ -46,7 +46,7 @@ document.addEventListener("visibilitychange", function () {
   }else{
     timeId=setInterval(() => {
       goToSlide(current+1)
-    }, 1500)
+    }, 2000)
   }
 })
 
